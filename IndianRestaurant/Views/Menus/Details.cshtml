@@ -5,23 +5,25 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<h2>Details</h2>
+<div class="col-md-offset-3 col-md-6">
 
-<div>
-    <h4>Menu</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div>
+        <h2 class="ttable-header">Menu - Details</h2>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt></dt>
+            <dd style="padding-top:15px;">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.MenuId },new { @class = "btn ttable-header" }) 
+                @Html.ActionLink("Back to List", "Index","", new { @class = "btn ttable-header" })
+            </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MenuId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+   
+    </div>

@@ -4,64 +4,68 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
+<div class="col-md-offset-3 col-md-6">
+    
 
-<h2>Details</h2>
+    <div>
+        <h2 class="ttable-header">Item - Details</h2>
+     
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Menu.Name)
+            </dt>
 
-<div>
-    <h4>Item</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Menu.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Menu.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Menu.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OriginalImageUrl)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OriginalImageUrl)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OriginalImageUrl)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OriginalImageUrl)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ThumbImageUrl)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ThumbImageUrl)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ThumbImageUrl)
+            </dd>
+            <dt></dt>
+            <dd style="padding-top:15px;">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }, new { @class = "btn ttable-header" })
+                @Html.ActionLink("Back to List", "Index", "", new { @class = "btn ttable-header" })
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ThumbImageUrl)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId },new { @class = "btn btn-warning" }) 
-    @Html.ActionLink("Back to List", "Index","",new { @class = "btn btn-info" })
-</p>
+        </dl>
+    </div>
+   
+   </div>
+    
