@@ -1,31 +1,58 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<!--
+      Home Slider
+      ==================================== -->
+<section id="home">
+    <div id="home-carousel" class="carousel slide" data-interval="false">
+        <ol class="carousel-indicators">
+            <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#home-carousel" data-slide-to="1"></li>
+            <li data-target="#home-carousel" data-slide-to="2"></li>
+        </ol>
+        <!--/.carousel-indicators-->
+        <div class="carousel-inner">
+            <div class="item active" style="background-image: url('../../Assest/silder/bg1.jpg')">
+              
+                <div class="carousel-caption">
+                    <div class="animated bounceInRight">
+                        <h2>Hungry?</h2><h3>Check our mouth-watering menu.<br/><br/>@Html.ActionLink("Menu", "About", "Home", new { @class = "btn btn-primary" })</h3>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('../../Assest/silder/bg2.jpg')">
+                <div class="carousel-caption">
+                    <div class="animated bounceInDown">
+                        <h2>Hungry?</h2><h3>Check our mouth-watering menu.<br /><br />@Html.ActionLink("Menu", "About", "Home", new { @class = "btn btn-primary" })</h3>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('../../Assest/silder/bg3.jpg')">
+               
+                <div class="carousel-caption">
+                    <div class="animated bounceInUp">
+                        <h2>Hungry?</h2><h3>Check our mouth-watering menu.<br /><br />@Html.ActionLink("Menu", "About", "Home", new { @class = "btn btn-primary" })</h3>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.carousel-inner-->
+        <nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
+            <a class="sl-prev hidden-xs" href="#home-carousel" data-slide="prev">
+                <i class="fa fa-angle-left fa-3x"></i>
+            </a>
+            <a class="sl-next" href="#home-carousel" data-slide="next">
+                <i class="fa fa-angle-right fa-3x"></i>
+            </a>
+        </nav>
+    </div>
+</section>
+<!--
+End #home Slider
+========================== -->
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>

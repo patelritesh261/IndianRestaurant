@@ -1,0 +1,66 @@
+﻿@model IEnumerable<IndianRestaurant.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+   
+    <a href="@Url.Action("Create")" class="btn btn-info" title="Add"><i class="fa fa-plus"></i>Add New Item</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OriginalImageUrl)
+           
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThumbImageUrl)
+           
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Menu.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        
+        <td>
+       
+            <img src='~/Assest/Uploads/Thumbnails/@Html.DisplayFor(modelItem => item.ThumbImageUrl)' alt="@Html.DisplayFor(modelItem=>item.Name)" />
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.ItemId })" class="btn btn-primary" title="Edit"><i class="fa fa-pencil"></i></a>
+            <a href="@Url.Action("Details", new { id = item.ItemId })" class="btn btn-info" title="Info"><i class="fa fa-info"></i></a>
+            <a href="@Url.Action("Delete", new { id = item.ItemId })" class="btn btn-danger" title="Delete"><i class="fa fa-trash"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

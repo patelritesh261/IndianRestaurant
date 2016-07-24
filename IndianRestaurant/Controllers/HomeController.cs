@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IndianRestaurant.Models;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace IndianRestaurant.Controllers
 {
     public class HomeController : Controller
     {
+        private RestuarantModel db = new RestuarantModel();
         public ActionResult Index()
         {
             return View();
         }
-
+        public ActionResult Index1()
+        {
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -25,6 +32,27 @@ namespace IndianRestaurant.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult Menu()
+        {
+            //return menu and associated items from database
+            Menu[] MenuModel = db.Menus.Include("Item").ToArray();
+
+            return View(MenuModel);
+        }
+        //home/ItemDetails/14
+        public async Task<ActionResult> ItemDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Item item = await db.Items.FindAsync(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
         }
     }
 }

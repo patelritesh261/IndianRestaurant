@@ -1,0 +1,77 @@
+﻿@using IndianRestaurant.Models
+@model Item
+
+@{
+    ViewBag.Title = "ItemDetails";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="main">
+    <table class="ttable">
+        <tr>
+            <td>
+                <div class="col-md-offset-4 col-md-4"><h2 class="ttable-header">@Model.Name </h2> </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+        </tr>
+       
+    </table>
+</div>
+<h2>ItemDetails</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OriginalImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThumbImageUrl)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Menu.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThumbImageUrl)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ItemId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ItemId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ItemId })
+            </td>
+        </tr>
+    }
+
+</table>
