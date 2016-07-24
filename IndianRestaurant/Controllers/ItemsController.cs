@@ -12,6 +12,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Web.Helpers;
 
 namespace IndianRestaurant.Controllers
 {
@@ -62,6 +63,7 @@ namespace IndianRestaurant.Controllers
                 {
 
                     //Save image to file
+                   
                     string filename = image.FileName;
                     filename = Guid.NewGuid() + filename;
                     string filePathOriginal = Server.MapPath("/Assest/Uploads/Originals");

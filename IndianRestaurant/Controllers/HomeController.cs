@@ -41,13 +41,13 @@ namespace IndianRestaurant.Controllers
             return View(MenuModel);
         }
         //home/ItemDetails/14
-        public async Task<ActionResult> ItemDetails(int? id)
+        public ActionResult ItemDetails(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = await db.Items.FindAsync(id);
+            Item item = db.Items.Include("Menu").Single(g=>g.ItemId==id);
             if (item == null)
             {
                 return HttpNotFound();

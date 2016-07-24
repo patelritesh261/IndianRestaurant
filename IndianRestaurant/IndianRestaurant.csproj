@@ -211,7 +211,6 @@
     <Content Include="Assest\slider-bg.jpg" />
     <Content Include="Assest\Uploads\Originals\background.jpg" />
     <Content Include="Assest\Uploads\Thumbnails\background.jpg" />
-    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fancybox_loading.gif" />
@@ -220,7 +219,6 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\main.css" />
-    <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
