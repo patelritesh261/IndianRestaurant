@@ -68,8 +68,8 @@ namespace IndianRestaurant.Controllers
 
                         string filename = image.FileName;
                         filename = Guid.NewGuid() + filename;
-                        string filePathOriginal = Server.MapPath("~/Assest/Uploads/Originals");
-                        string filePathThumbnail = Server.MapPath("~/Assest/Uploads/Thumbnails");
+                        string filePathOriginal = Server.MapPath("~/Content/Uploads/Originals");
+                        string filePathThumbnail = Server.MapPath("~/Content/Uploads/Thumbnails");
                         string savedFileName = Path.Combine(filePathOriginal, filename);
                         image.SaveAs(savedFileName);
                         item.OriginalImageUrl = filename;
@@ -100,7 +100,7 @@ namespace IndianRestaurant.Controllers
                         await db.SaveChangesAsync();
                         return RedirectToAction("Index");
                     }
-                }
+                } 
                 catch (Exception)
                 {
 
