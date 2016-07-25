@@ -255,8 +255,8 @@ width: 11px;
 }
 
 .carousel-caption > div {
-  background: rgb(0, 0, 0); /* fallback color */
-   background: rgba(0, 0, 0, 0.7);
+  background: rgb(161, 80, 45); /* fallback color */
+   background: rgba(161, 80, 45, 0.9);
   padding: 60px 50px 80px 20%;
   position: absolute;
   top: 25%;
