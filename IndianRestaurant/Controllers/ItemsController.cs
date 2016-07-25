@@ -58,46 +58,55 @@ namespace IndianRestaurant.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpPostedFileBase image = Request.Files["file"];
-                if (image != null)
+                try
+                {
+                    HttpPostedFileBase image = Request.Files["file"];
+                    if (image != null)
+                    {
+
+                        //Save image to file
+
+                        string filename = image.FileName;
+                        filename = Guid.NewGuid() + filename;
+                        string filePathOriginal = Server.MapPath("~/Assest/Uploads/Originals");
+                        string filePathThumbnail = Server.MapPath("~/Assest/Uploads/Thumbnails");
+                        string savedFileName = Path.Combine(filePathOriginal, filename);
+                        image.SaveAs(savedFileName);
+                        item.OriginalImageUrl = filename;
+                        //Read image back from file and create thumbnail from it
+                        Image imageFile = Image.FromFile(savedFileName);
+                        int imgHeight = 100;
+                        int imgWidth = 100;
+                        /*  if (imageFile.Width < imageFile.Height)
+                          {
+                              //portrait image  
+                              imgHeight = 100;
+                              float imgRatio = (float)imgHeight / (float)imageFile.Height;
+                              imgWidth = Convert.ToInt32(imageFile.Height * imgRatio);
+                          }
+                          else if(imageFile.Height < imageFile.Width)
+                  {
+                              //landscape image  
+                              imgWidth = 100;
+                              float imgRatio = (float)imgWidth / (float)imageFile.Width;
+                              imgHeight = Convert.ToInt32(imageFile.Height * imgRatio);
+                          }*/
+                        Image thumb = imageFile.GetThumbnailImage(imgWidth, imgHeight, () => false, IntPtr.Zero);
+                        filePathThumbnail = Path.Combine(filePathThumbnail, filename);
+                        item.ThumbImageUrl = filename;
+                        thumb.Save(filePathThumbnail);
+
+                        db.Items.Add(item);
+                        await db.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception)
                 {
 
-                    //Save image to file
-                   
-                    string filename = image.FileName;
-                    filename = Guid.NewGuid() + filename;
-                    string filePathOriginal = Server.MapPath("~/Assest/Uploads/Originals");
-                    string filePathThumbnail = Server.MapPath("~/Assest/Uploads/Thumbnails");
-                    string savedFileName = Path.Combine(filePathOriginal, filename);
-                    image.SaveAs(savedFileName);
-                    item.OriginalImageUrl = filename;
-                    //Read image back from file and create thumbnail from it
-                    Image imageFile = Image.FromFile(savedFileName);
-                    int imgHeight = 100;
-                    int imgWidth = 100;
-                  /*  if (imageFile.Width < imageFile.Height)
-                    {
-                        //portrait image  
-                        imgHeight = 100;
-                        float imgRatio = (float)imgHeight / (float)imageFile.Height;
-                        imgWidth = Convert.ToInt32(imageFile.Height * imgRatio);
-                    }
-                    else if(imageFile.Height < imageFile.Width)
-            {
-                        //landscape image  
-                        imgWidth = 100;
-                        float imgRatio = (float)imgWidth / (float)imageFile.Width;
-                        imgHeight = Convert.ToInt32(imageFile.Height * imgRatio);
-                    }*/
-                    Image thumb = imageFile.GetThumbnailImage(imgWidth, imgHeight, () => false, IntPtr.Zero);
-                    filePathThumbnail = Path.Combine(filePathThumbnail, filename);
-                    item.ThumbImageUrl = filename;
-                    thumb.Save(filePathThumbnail);
-
-                    db.Items.Add(item);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    throw;
                 }
+               
                    
             }
 
