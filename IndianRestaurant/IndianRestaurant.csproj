@@ -297,8 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assest\Uploads\Originals\" />
-    <Folder Include="Assest\Uploads\Thumbnails\" />
     <Folder Include="Content\Uploads\Originals\" />
     <Folder Include="Content\Uploads\Thumbnails\" />
     <Folder Include="Scripts\vendor\" />

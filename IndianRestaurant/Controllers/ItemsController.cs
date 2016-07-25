@@ -63,14 +63,22 @@ namespace IndianRestaurant.Controllers
                     HttpPostedFileBase image = Request.Files["file"];
                     if (image != null)
                     {
-
+                        string filePathOriginal = "~/Assest/Uploads/Originals";
+                        bool flag1 = System.IO.Directory.Exists(Server.MapPath(filePathOriginal));
+                        if (!flag1)
+                            System.IO.Directory.CreateDirectory(Server.MapPath(filePathOriginal));
+                        string filePathThumbnail = "~/Assest/Uploads/Thumbnails";
+                        bool flag2 = System.IO.Directory.Exists(Server.MapPath(filePathThumbnail));
+                        if (!flag2)
+                            System.IO.Directory.CreateDirectory(Server.MapPath(filePathThumbnail));
                         //Save image to file
 
                         string filename = image.FileName;
                         filename = Guid.NewGuid() + filename;
-                        string filePathOriginal = Server.MapPath("~/Content/Uploads/Originals");
-                        string filePathThumbnail = Server.MapPath("~/Content/Uploads/Thumbnails");
-                        string savedFileName = Path.Combine(filePathOriginal, filename);
+                      
+
+
+                        string savedFileName = Path.Combine(Server.MapPath(filePathOriginal), filename);
                         image.SaveAs(savedFileName);
                         item.OriginalImageUrl = filename;
                         //Read image back from file and create thumbnail from it
@@ -92,7 +100,7 @@ namespace IndianRestaurant.Controllers
                               imgHeight = Convert.ToInt32(imageFile.Height * imgRatio);
                           }*/
                         Image thumb = imageFile.GetThumbnailImage(imgWidth, imgHeight, () => false, IntPtr.Zero);
-                        filePathThumbnail = Path.Combine(filePathThumbnail, filename);
+                        filePathThumbnail = Path.Combine(Server.MapPath(filePathThumbnail), filename);
                         item.ThumbImageUrl = filename;
                         thumb.Save(filePathThumbnail);
 
