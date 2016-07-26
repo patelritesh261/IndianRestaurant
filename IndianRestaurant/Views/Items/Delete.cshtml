@@ -51,16 +51,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OriginalImageUrl)
+            <img src="~/Assest/Uploads/Thumbnails/  @Html.DisplayFor(model => model.ThumbImageUrl)" alt="@Html.DisplayFor(model => model.Name)">
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ThumbImageUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ThumbImageUrl)
-        </dd>
+      
         <dt></dt>
         <dd style="padding-top:15px;">
             @using (Html.BeginForm())
