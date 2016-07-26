@@ -21,6 +21,7 @@ namespace IndianRestaurant.Controllers
         private RestuarantModel db = new RestuarantModel();
 
         // GET: Items
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             var items = db.Items.Include(i => i.Menu);
@@ -28,13 +29,14 @@ namespace IndianRestaurant.Controllers
         }
 
         // GET: Items/Details/5
-        public async Task<ActionResult> Details(int? id)
+        [Authorize]
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = await db.Items.FindAsync(id);
+            Item item =  db.Items.Include(i=>i.Menu).Single(s=>s.ItemId==id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -43,6 +45,7 @@ namespace IndianRestaurant.Controllers
         }
 
         // GET: Items/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.MenuId = new SelectList(db.Menus, "MenuId", "Name");
@@ -53,6 +56,7 @@ namespace IndianRestaurant.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ItemId,MenuId,Name,Description,Price,OriginalImageUrl")] Item item)
         {
@@ -123,6 +127,7 @@ namespace IndianRestaurant.Controllers
         }
 
         // GET: Items/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -142,6 +147,7 @@ namespace IndianRestaurant.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ItemId,MenuId,Name,Description,Price,OriginalImageUrl,ThumbImageUrl")] Item item)
         {
@@ -156,13 +162,14 @@ namespace IndianRestaurant.Controllers
         }
 
         // GET: Items/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        [Authorize]
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = await db.Items.FindAsync(id);
+            Item item = db.Items.Include(i => i.Menu).Single(s => s.ItemId == id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -172,10 +179,11 @@ namespace IndianRestaurant.Controllers
 
         // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Item item = await db.Items.FindAsync(id);
+            Item item = db.Items.Include(i => i.Menu).Single(s => s.ItemId == id);
             db.Items.Remove(item);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

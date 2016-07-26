@@ -127,11 +127,13 @@ px      68    160    252    */
 }
 
 .navigation .navbar-nav > li > a {
-  background-color: #00c7fc;
+ background: rgb(161, 80, 45); /* fallback color */
+   background: rgba(161, 80, 45, 0.9);
 }
 
 .navigation .navbar-nav > li > a:hover {
-  background-color: #00c7fc;
+background: rgb(161, 80, 45); /* fallback color */
+   background: rgba(161, 80, 45, 0.9);
 }
 
 .navigation .navbar-nav > li.current > a {

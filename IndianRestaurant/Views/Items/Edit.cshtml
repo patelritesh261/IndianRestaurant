@@ -21,7 +21,7 @@
                 @Html.HiddenFor(model => model.ItemId)
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.MenuId, "MenuId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.MenuId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("MenuId", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.MenuId, "", new { @class = "text-danger" })
@@ -52,21 +52,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.OriginalImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.OriginalImageUrl, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.OriginalImageUrl, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ThumbImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ThumbImageUrl, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ThumbImageUrl, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+             
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">

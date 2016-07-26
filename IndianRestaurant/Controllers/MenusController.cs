@@ -16,6 +16,7 @@ namespace IndianRestaurant.Controllers
         private RestuarantModel db = new RestuarantModel();
 
         // GET: Menus
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             return View(await db.Menus.ToListAsync());
@@ -37,6 +38,7 @@ namespace IndianRestaurant.Controllers
         }
 
         // GET: Menus/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace IndianRestaurant.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "MenuId,Name")] Menu menu)
         {
@@ -60,6 +63,7 @@ namespace IndianRestaurant.Controllers
         }
 
         // GET: Menus/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,6 +82,7 @@ namespace IndianRestaurant.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "MenuId,Name")] Menu menu)
         {
@@ -91,6 +96,7 @@ namespace IndianRestaurant.Controllers
         }
 
         // GET: Menus/Delete/5
+        [Authorize]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -107,6 +113,7 @@ namespace IndianRestaurant.Controllers
 
         // POST: Menus/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
