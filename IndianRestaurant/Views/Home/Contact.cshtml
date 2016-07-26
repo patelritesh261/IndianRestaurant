@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IndianRestaurant.Models.Mail
+@{
     ViewBag.Title = "Contact";
 }
 <div class="main">
@@ -6,64 +7,56 @@
         <div class="row">
             <div class="col-md-5">
 
-                <h2>@ViewBag.Title.</h2>
-
-                <hr style="width: 100%; color: black; height: 3px; background-color: black;" />
-                <div class="alert btn-sample btn-sm alert-dismissible" id="AlertFlash" runat="server" visible="false">
-                    <asp:Label runat="server" ID="StatusLabel" />
+                <h2 class="ttable-header">@ViewBag.Title</h2>
+                <br/>
+              @*  <div class="alert btn-sample btn-sm alert-dismissible" id="AlertFlash" runat="server" visible="false">
+    <asp:Label runat="server" ID="StatusLabel" />
+                </div>*@
+               @using (Html.BeginForm("Contact", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @id = "contact-form", role = "form" }))
+               {
+                <div class="form-horizontal">
+                    @Html.ValidationSummary()
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Submit" class="btn ttable-header" />
+                        </div>
+                    </div>
+                    </div>
+                    }
+                    <!-- end contact form -->
                 </div>
-                <!-- start contact form -->
-                <form role="form" method="post" action="Contact.aspx">
-                    <div class="form-group">
-                        <div class="col-md-3">
-                            <label class="control-label" for="exampleInputEmail">First Name</label>
-
-                        </div>
-                        <div class="col-md-offset-3 ">
-                            <asp:TextBox ID="txtfirstname" runat="server" required="true" CssClass="form-control" placeholder="Enter first Name" CausesValidation="True"></asp:TextBox>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-3">
-                            <label class="control-label" for="exampleInputEmail">Email address</label>
-                        </div>
-                        <div class="col-md-offset-3 ">
-                            <asp:TextBox TextMode="Email" CssClass="form-control" ID="txtEmail" placeholder="Enter email" required="true" runat="server"></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-3">
-                            <label class="control-label" for="exampleInputEmail">Message</label>
-                        </div>
-                        <div class="col-md-offset-3 ">
-                            <asp:TextBox TextMode="MultiLine" Rows="5" CssClass="form-control" ID="txtMessage" placeholder="Enter Message" runat="server"></asp:TextBox>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <asp:Button ID="btnsubmit" CssClass="btn btn-sample" runat="server" Text="Submit" OnClick="btnsubmit_Click" />
-                        <asp:Button ID="Button1" CssClass="btn btn-sample-inverse" runat="server" Text="Cancel" />
-                    </div>
-                </form>
-                <!-- end contact form -->
-            </div>
             <!-- start google map -->
             <div class="col-md-5">
-                <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
-                <div style='overflow: hidden; height: 440px; width: 100%; box-shadow: 2px 2px 15px #888888; border: 5px solid #808080; margin: 5%;'>
-                    <div id='gmap_canvas' style='height: 440px; width: 100%;'></div>
-                    <div><small><a href="http://embedgooglemaps.com">embed google maps							</a></small></div>
-                    <div><small><a href="https://termsandcondiitionssample.com">terms and conditions generator</a></small></div>
-                    <style>
-                        #gmap_canvas img {
-                            max-width: none !important;
-                            background: none !important;
-                        }
-                    </style>
-                </div>
-                <script type='text/javascript'>function init_map() { var myOptions = { zoom: 16, center: new google.maps.LatLng(44.606086, -79.4565743), mapTypeId: google.maps.MapTypeId.ROADMAP }; map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions); marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(44.606086, -79.4565743) }); infowindow = new google.maps.InfoWindow({ content: '<strong>RITESH PATEL</strong><br>10 Vanessa Dr, Orillia , ON - L3V 7Y8<br>' }); google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker); } google.maps.event.addDomListener(window, 'load', init_map);</script>
-            </div>
+            <img src="~/Assest/Contact.png" alt="Contact" />    
+              </div>
             <!-- end google map -->
         </div>
     </div>

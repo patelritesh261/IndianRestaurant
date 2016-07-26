@@ -182,6 +182,7 @@
     <Compile Include="Models\database_firewall_rules.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\RestuarantModel.cs" />
@@ -191,11 +192,13 @@
   <ItemGroup>
     <Content Include="Assest\.DS_Store" />
     <Content Include="Assest\background1.jpg" />
+    <Content Include="Assest\Contact.png" />
     <Content Include="Assest\logo.png" />
     <Content Include="Assest\silder\.DS_Store" />
     <Content Include="Assest\silder\bg1.jpg" />
     <Content Include="Assest\silder\bg2.jpg" />
     <Content Include="Assest\silder\bg3.jpg" />
+    <Content Include="Assest\test.txt" />
     <Content Include="Assest\Uploads\Originals\157af8d9-2d45-4d42-a564-a38a37edce72Palak_Paneer.png" />
     <Content Include="Assest\Uploads\Thumbnails\157af8d9-2d45-4d42-a564-a38a37edce72Palak_Paneer.png" />
     <Content Include="Content\animate.css" />
