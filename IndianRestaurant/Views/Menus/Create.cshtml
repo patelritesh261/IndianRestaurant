@@ -12,6 +12,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
+            <p>@Html.Raw(ViewBag.alert)</p>
             <h2 class="ttable-header">Add Menu</h2>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })

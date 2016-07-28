@@ -8,7 +8,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IndianRestaurant.Models;
-
+/*
+ * @File name : Menu Controller
+ * @Author : Ritesh Patel and Parvati Patel
+ * @Website name : Taj Mahel(http://indianrestaurant.azurewebsites.net/)
+ * @File description : This controller provides CRUD operation of menu model
+ */
 namespace IndianRestaurant.Controllers
 {
     public class MenusController : Controller
@@ -54,9 +59,16 @@ namespace IndianRestaurant.Controllers
         {
             if (ModelState.IsValid)
             {
+                bool flag=db.Menus.Any(m=>m.Name==menu.Name);
+                if (flag) {
+                    ViewBag.alert = "Menu already exists!";
+                    return View();
+                }
+                else {
                 db.Menus.Add(menu);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
+                }
             }
 
             return View(menu);

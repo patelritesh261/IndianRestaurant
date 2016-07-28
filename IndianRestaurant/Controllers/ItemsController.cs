@@ -13,7 +13,12 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Web.Helpers;
-
+/*
+ * @File name : Item Controller
+ * @Author : Ritesh Patel and Parvati Patel
+ * @Website name : Taj Mahel(http://indianrestaurant.azurewebsites.net/)
+ * @File description : This controller provides CRUD operation of item model
+ */
 namespace IndianRestaurant.Controllers
 {
     public class ItemsController : Controller
@@ -60,6 +65,9 @@ namespace IndianRestaurant.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ItemId,MenuId,Name,Description,Price,OriginalImageUrl")] Item item)
         {
+
+
+
             if (ModelState.IsValid)
             {
                 try
@@ -67,12 +75,16 @@ namespace IndianRestaurant.Controllers
                     HttpPostedFileBase image = Request.Files["file"];
                     if (image != null)
                     {
+                        //Originals file path
                         string filePathOriginal = "~/Assest/Uploads/Originals";
                         bool flag1 = System.IO.Directory.Exists(Server.MapPath(filePathOriginal));
+                        //check if directory exists or not
                         if (!flag1)
                             System.IO.Directory.CreateDirectory(Server.MapPath(filePathOriginal));
+                        //Thumbnails file path
                         string filePathThumbnail = "~/Assest/Uploads/Thumbnails";
                         bool flag2 = System.IO.Directory.Exists(Server.MapPath(filePathThumbnail));
+                        //check if directory exists or not
                         if (!flag2)
                             System.IO.Directory.CreateDirectory(Server.MapPath(filePathThumbnail));
                         //Save image to file
@@ -83,29 +95,18 @@ namespace IndianRestaurant.Controllers
 
 
                         string savedFileName = Path.Combine(Server.MapPath(filePathOriginal), filename);
+                        //save image into folder
                         image.SaveAs(savedFileName);
                         item.OriginalImageUrl = filename;
                         //Read image back from file and create thumbnail from it
                         Image imageFile = Image.FromFile(savedFileName);
                         int imgHeight = 100;
                         int imgWidth = 100;
-                        /*  if (imageFile.Width < imageFile.Height)
-                          {
-                              //portrait image  
-                              imgHeight = 100;
-                              float imgRatio = (float)imgHeight / (float)imageFile.Height;
-                              imgWidth = Convert.ToInt32(imageFile.Height * imgRatio);
-                          }
-                          else if(imageFile.Height < imageFile.Width)
-                  {
-                              //landscape image  
-                              imgWidth = 100;
-                              float imgRatio = (float)imgWidth / (float)imageFile.Width;
-                              imgHeight = Convert.ToInt32(imageFile.Height * imgRatio);
-                          }*/
+                       
                         Image thumb = imageFile.GetThumbnailImage(imgWidth, imgHeight, () => false, IntPtr.Zero);
                         filePathThumbnail = Path.Combine(Server.MapPath(filePathThumbnail), filename);
                         item.ThumbImageUrl = filename;
+                        //save thumb image into folder
                         thumb.Save(filePathThumbnail);
 
                         db.Items.Add(item);

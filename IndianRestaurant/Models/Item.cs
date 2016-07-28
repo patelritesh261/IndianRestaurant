@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+/*
+ * @File name : Item Model
+ * @Author : Ritesh Patel and Parvati Patel
+ * @Website name : Taj Mahel(http://indianrestaurant.azurewebsites.net/)
+ * @File description : This model has defination of item model
+ */
 namespace IndianRestaurant.Models
 {
     public class Item
@@ -12,7 +17,7 @@ namespace IndianRestaurant.Models
         {
 
         }
-        
+        //property of item models
         public int ItemId { get; set; }
         [Display(Name = "Menu")]
         public int MenuId { get; set; }
