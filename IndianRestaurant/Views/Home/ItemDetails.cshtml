@@ -12,7 +12,9 @@
     * @File description : This view provide specific item description.
 *@
 <div class="col-md-offset-1 col-md-11">
+    @Html.ActionLink("Back to Menu", "Menu", "Home", new { @class = "btn ttable-header" })
     <table class="ttable">
+        
         <tr>
             <td>
                 <div class="col-md-offset-4 col-md-4"><h2 class="ttable-header">@Model.Name   <br/>$ @Model.Price</h2> </div>
