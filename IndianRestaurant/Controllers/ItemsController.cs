@@ -65,60 +65,70 @@ namespace IndianRestaurant.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ItemId,MenuId,Name,Description,Price,OriginalImageUrl")] Item item)
         {
-
-
-
-            if (ModelState.IsValid)
+            bool flag = db.Items.Any(i => i.Name == item.Name);
+            if (flag)
             {
-                try
+                ViewBag.alert = "Item already exists!";
+                ViewBag.MenuId = new SelectList(db.Menus, "MenuId", "Name");
+                return View();
+            }
+            else
+            {
+                if (ModelState.IsValid)
                 {
-                    HttpPostedFileBase image = Request.Files["file"];
-                    if (image != null)
+                    try
                     {
-                        //Originals file path
-                        string filePathOriginal = "~/Assest/Uploads/Originals";
-                        bool flag1 = System.IO.Directory.Exists(Server.MapPath(filePathOriginal));
-                        //check if directory exists or not
-                        if (!flag1)
-                            System.IO.Directory.CreateDirectory(Server.MapPath(filePathOriginal));
-                        //Thumbnails file path
-                        string filePathThumbnail = "~/Assest/Uploads/Thumbnails";
-                        bool flag2 = System.IO.Directory.Exists(Server.MapPath(filePathThumbnail));
-                        //check if directory exists or not
-                        if (!flag2)
-                            System.IO.Directory.CreateDirectory(Server.MapPath(filePathThumbnail));
-                        //Save image to file
+                        HttpPostedFileBase image = Request.Files["file"];
+                        if (image != null)
+                        {
+                            //Originals file path
+                            string filePathOriginal = "~/Assest/Uploads/Originals";
+                            bool flag1 = System.IO.Directory.Exists(Server.MapPath(filePathOriginal));
+                            //check if directory exists or not
+                            if (!flag1)
+                                System.IO.Directory.CreateDirectory(Server.MapPath(filePathOriginal));
+                            //Thumbnails file path
+                            string filePathThumbnail = "~/Assest/Uploads/Thumbnails";
+                            bool flag2 = System.IO.Directory.Exists(Server.MapPath(filePathThumbnail));
+                            //check if directory exists or not
+                            if (!flag2)
+                                System.IO.Directory.CreateDirectory(Server.MapPath(filePathThumbnail));
+                            //Save image to file
 
-                        string filename = image.FileName;
-                        filename = Guid.NewGuid() + filename;
-                      
+                            string filename = image.FileName;
+                            filename = Guid.NewGuid() + filename;
 
 
-                        string savedFileName = Path.Combine(Server.MapPath(filePathOriginal), filename);
-                        //save image into folder
-                        image.SaveAs(savedFileName);
-                        item.OriginalImageUrl = filename;
-                        //Read image back from file and create thumbnail from it
-                        Image imageFile = Image.FromFile(savedFileName);
-                        int imgHeight = 100;
-                        int imgWidth = 100;
-                       
-                        Image thumb = imageFile.GetThumbnailImage(imgWidth, imgHeight, () => false, IntPtr.Zero);
-                        filePathThumbnail = Path.Combine(Server.MapPath(filePathThumbnail), filename);
-                        item.ThumbImageUrl = filename;
-                        //save thumb image into folder
-                        thumb.Save(filePathThumbnail);
 
-                        db.Items.Add(item);
-                        await db.SaveChangesAsync();
-                        return RedirectToAction("Index");
+                            string savedFileName = Path.Combine(Server.MapPath(filePathOriginal), filename);
+                            //save image into folder
+                            image.SaveAs(savedFileName);
+                            item.OriginalImageUrl = filename;
+                            //Read image back from file and create thumbnail from it
+                            Image imageFile = Image.FromFile(savedFileName);
+                            int imgHeight = 100;
+                            int imgWidth = 100;
+
+                            Image thumb = imageFile.GetThumbnailImage(imgWidth, imgHeight, () => false, IntPtr.Zero);
+                            filePathThumbnail = Path.Combine(Server.MapPath(filePathThumbnail), filename);
+                            item.ThumbImageUrl = filename;
+                            //save thumb image into folder
+                            thumb.Save(filePathThumbnail);
+
+                            db.Items.Add(item);
+                            await db.SaveChangesAsync();
+                            return RedirectToAction("Index");
+                        }
                     }
-                } 
-                catch (Exception)
-                {
+                    catch (Exception)
+                    {
 
-                    throw;
+                        throw;
+                    }
                 }
+
+
+               
                
                    
             }

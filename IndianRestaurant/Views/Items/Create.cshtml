@@ -14,6 +14,7 @@
 
         <div class="form-horizontal">
             <h2 class="ttable-header">Add Item</h2>
+            <p>@Html.Raw(ViewBag.alert)</p>
           <br/>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
