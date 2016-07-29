@@ -32,21 +32,28 @@
                                 <div class="thumbnail">
                                     <a href="@Url.Action("ItemDetails",new {id=item.ItemId})">
                                         <img src="~/Assest/Uploads/Thumbnails/@item.ThumbImageUrl" alt="@item.Name">
-                                        </a>
-                                        <div class="caption">
-                                            <h4>
-                                                <a href="@Url.Action("ItemDetails",new {id=item.ItemId})">@item.Name</a>
+                                    </a>
+                                    <div class="caption">
+                                        <h4>
+                                            <a href="@Url.Action("ItemDetails",new {id=item.ItemId})">@item.Name</a>
 
-                                            </h4>
+                                        </h4>
+                                        @if (item.Description.Length > 50)
+                                        {
                                             <p>@item.Description.Substring(0, 50) ...</p>
-                                            <p>$ @item.Price</p>
-                                        </div>
-</div>
+                                        }
+                                        else
+                                        {
+                                            <p>@item.Description ...</p>
+                                        }
+                                        <p>$ @item.Price</p>
+                                    </div>
+                                </div>
                             </div>
 
                         }
                     </div>
-                    
+
 
                 </td>
             </tr>

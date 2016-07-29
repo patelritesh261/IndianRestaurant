@@ -7,6 +7,7 @@ body {
     /*background-color: #47E893;*/
    background-image: url(../Assest/background1.jpg);
     background-repeat:no-repeat;
+    background-attachment: fixed;
     font-family: 'Open Sans', sans-serif;
     line-height: 1;
 	font-size: 13px;
