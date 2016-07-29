@@ -1,4 +1,10 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@*
+    * @File name : Lgon Partial view
+    * @Author : Ritesh Patel and Parvati Patel
+    * @Website name : Taj Mahel(http://indianrestaurant.azurewebsites.net/)
+    * @File description : This view Provides partial navigation bar.
+*@
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
